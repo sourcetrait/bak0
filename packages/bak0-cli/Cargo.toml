@@ -1,0 +1,31 @@
+[package]
+name = "bak0"
+version = "2.0.0"
+description = "Creates a backup .bak copy of a file"
+authors = ["SourceTrait <development@sourcetrait.com>"]
+repository = "https://github.com/sourcetrait/bak0"
+homepage = "https://sourcetrait.com"
+license = "AGPL-3.0-or-later"
+categories = ["command-line-utilities", "filesystem"]
+keywords = ["bak", "bak0", "backup", "copy"]
+edition = "2024"
+
+[[bin]]
+name = "bak"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+colored = "3"
+file_diff = "1"
+strum = { version = "0.27", features = ["derive"] }
+thiserror = "2"
+
+[dev-dependencies]
+function_name = "0.3"
+file_diff = "1"
+
+[package.metadata.generate-rpm]
+assets = [
+    { source = "../../target/release/bak", dest = "/usr/bin/bak", mode = "755" }
+]
